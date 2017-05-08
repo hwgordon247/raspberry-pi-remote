@@ -7,6 +7,7 @@ import {
     View
 } from 'react-native';
 
+
 var MOCKED_MOVIES_DATA = [
     {title: 'Title', year: '2015', posters: {thumbnail: 'https://facebook.github.io/react/img/logo_og.png'}},
 ];
