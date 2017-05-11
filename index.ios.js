@@ -27,7 +27,12 @@ class RaspberryPiRemote extends Component {
 
     fetchPiStatus() {
         console.log('WHREER DOES THIS LOG???')
-        fetch(REQUEST_URL)
+        fetch(REQUEST_URL, {
+            method: 'GET',
+            headers: {
+                auth: 'yoyoyoyo',
+            },
+        })
         // .then(ApiUtils.checkStatus)
         .then((responseData) => {
             console.log(responseData);
