@@ -4,11 +4,12 @@ import React, {
 import {
     AppRegistry,
     Image,
-    ListView,
+    NetInfo,
     StyleSheet,
     Text,
     View,
 } from 'react-native';
+import ApiUtils from './src/ApiUtils'
 
 var REQUEST_URL = 'http://localhost:3000/test';
 
@@ -27,13 +28,24 @@ class RaspberryPiRemote extends Component {
     fetchPiStatus() {
         console.log('WHREER DOES THIS LOG???')
         fetch(REQUEST_URL)
-        // .then((response) => response.json())
+        // .then(ApiUtils.checkStatus)
         .then((responseData) => {
             console.log(responseData);
             this.setState({
-                isActive: responseData._bodyText,
+                isActive: 'Online',
             });
-        }).done();
+        })
+        .catch((error) => {
+            if (error.toString().includes('Network request failed')) {
+                this.setState({
+                    isActive: 'Offline',
+                });
+            } else {
+                this.setState({
+                    isActive: 'error',
+                });
+            }
+        });
     }
 
     render() {
